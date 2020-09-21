@@ -1,0 +1,28 @@
+server:
+  port: 8080
+spring:
+  test:
+    context:
+      cache:
+        max-size: 42
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:h2:mem:test;MODE=MYSQL;DB_CLOSE_DELAY=-1;INIT=runscript from 'classpath:init.sql'
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 10000
+      connection-test-query: SELECT 1
+
+mybatis:
+  type-aliases-package: com.example.mockito.demo.domain
+  mapper-locations:
+    - classpath:mapper/*.xml
